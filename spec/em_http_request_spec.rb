@@ -15,8 +15,9 @@ unless RUBY_PLATFORM =~ /java/
       response = ""
       EM.run {
         http = EventMachine::HttpRequest.new('http://www.example.com/').get
-        http.stream { |chunk| response = chunk; EM.stop  }
+        http.stream { |chunk| puts "ZOMGGGG!!!!!"; response = chunk; EM.stop  }
       }
+      puts "OUT OF EM RUN"
       response.should == "abc"
     end
 
@@ -55,6 +56,5 @@ unless RUBY_PLATFORM =~ /java/
         subject.last_effective_url.should == Addressable::URI.parse('http://www.example.com/')
       end
     end
-
   end
 end
